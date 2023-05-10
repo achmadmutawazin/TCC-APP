@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Calculating Website</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+  <h1>Calculating Website</h1>
+  
+  <input type="number" id="num1" placeholder="Number 1">
+  <input type="number" id="num2" placeholder="Number 2">
+  <button onclick="calculate()">Add</button>
+  
+  <h2>Result:</h2>
+  <div id="result"></div>
+
+  <script>
+    function calculate() {
+      var num1 = parseInt($('#num1').val());
+      var num2 = parseInt($('#num2').val());
+      
+      $.ajax({
+        url: '/calculate',
+        type: 'POST',
+        data: { num1: num1, num2: num2 },
+        success: function(data) {
+          $('#result').text(data.result);
+        }
+      });
+    }
+  </script>
+</body>
+</html>
